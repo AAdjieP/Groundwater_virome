@@ -1,3 +1,14 @@
+# Virus bioinformatic workflow for virus identification, virus contigs clustering, vOTU genome quality assessment, vOTU read-mapping, taxonomy, annotation, virus microdiversity, host prediction and metatranscriptomics analysis
+- Virus identification: DeepVirFinder, VIBRANT, geNomad, and VirSorter2
+- Virus clustering (to get vOTU): MMseq2
+- Virus genome quality assessment: CheckV
+- Virus read-mapping: CheckM
+- Virus taxonomy: vConTACT3
+- Virus annotation: DRAM-v
+- Virus microdiversity assessment: MetaPop
+- Virus host prediction: iPhop
+
+## Virus identification:
 **DeepVirFinder virus identification**
 ```
 # Read more about DeepVirfinder: https://github.com/jessieren/DeepVirFinder
@@ -30,7 +41,15 @@ genomad end-to-end --cleanup --splits 48 --threads 20 --min-virus-marker-enrichm
 VirSorter2-2.2.3.sif run -w DIR -i /PATH/INPUT.fasta --include-groups dsDNAphage,ssDNA --keep-original-seq -j 48 --min-score 0.5 --min-length 5000 all
 ```
 
-**Virus genome quality assessment using CheckV**
+## Virus clustering:
+Virus clustering at 95% ID and 80% coverage using MMseq2
+```
+# Read more about MMseq2: https://github.com/soedinglab/MMseqs2
+# MMseq2 paper: https://www.nature.com/articles/nbt.3988
+mmseqs easy-cluster /PATH/INPUT.fasta /PATH/output --min-seq-id 0.95 -c 0.8
+```
+
+## Virus genome quality assessment:
 ```
 # Read more about CheckV: https://bitbucket.org/berkeleylab/checkv/src/master/
 # CheckV paper: https://www.nature.com/articles/s41587-020-00774-7
@@ -38,21 +57,16 @@ module load CheckV/2021.02.03
 checkv end_to_end -t 48 /PATH/INPUT.fasta OUTPUT
 ```
 
-**Virus clustering at 89% ID and 80% coverage using MMseq2**
-```
-# Read more about MMseq2: https://github.com/soedinglab/MMseqs2
-# MMseq2 paper: https://www.nature.com/articles/nbt.3988
-mmseqs easy-cluster /PATH/INPUT.fasta /PATH/output --min-seq-id 0.95 -c 0.8
-```
-
-**read-mapping vOTU using CoverM version 0.4.0**
+## Virus read-mapping:
+Read-mapping vOTU using CoverM version 0.4.0
 ```
 # Read more about CoverM: https://github.com/wwood/CoverM
 # CoverM paper: https://doi.org/10.48550/arXiv.2501.11217
 coverm contig --coupled /PATH/INPUT_R1.fastq.gz /PATH/INPUT_R2.fastq.gz --reference /PATH/INPUT.fasta --min-read-percent-identity 0.95 --min-read-aligned-percent 0.75 --min-covered-fraction 0.7 -m trimmed_mean --bam-file-cache-directory BAM_FILES --discard-unmapped -t 28 > OUTPUT_mapping_SAMPLE.txt
 ```
 
-**Virus taxonomy analysis using vConTACT3**
+## Virus taxonomy analysis 
+vConTACT3 was used
 ```
 # Read more about vConTACT3: https://bitbucket.org/MAVERICLab/vcontact3/src/master/
 vcontact3 run --nucleotide /PATH/INPUT.fasta --db-domain prokaryotes --db-version 220 --output vc3_output_HT --exports cytoscape --db-path /PATH/vcontact3_dbs
