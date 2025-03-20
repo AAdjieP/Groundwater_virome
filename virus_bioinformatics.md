@@ -128,7 +128,7 @@ minced -minNR 3 -spacers /PATH/INPUT.fasta OUTPUT_CRISPR-Cas_spacers
 # Spacer blastn
 module load blast
 
-#first: makeblastdb -in virus_genome.fasta -dbtype nucl -out virus_db
+#first: makeblastdb -in FINAL_vOTU.fasta -dbtype nucl -out FINAL_vOTU_db
 #see more on: https://www.ncbi.nlm.nih.gov/books/NBK279684/table/appendices.T.options_common_to_all_blast/
 blastn \
   -query MAG_spacers.fa \
