@@ -1,4 +1,4 @@
-# Virus bioinformatic workflow for virus identification, virus contigs clustering, vOTU genome quality assessment, vOTU read-mapping, taxonomy, annotation, virus microdiversity, host prediction and metatranscriptomics analysis
+# Virus bioinformatic workflow for virus identification, virus contigs clustering, vOTU genome quality assessment, vOTU read-mapping, taxonomy, annotation, virus microdiversity, and host prediction
 - Virus identification: DeepVirFinder, VIBRANT, geNomad, and VirSorter2
 - Virus clustering (to get vOTU): MMseq2
 - Virus genome quality assessment: CheckV
@@ -115,8 +115,4 @@ iphop predict --fa_file /PATH/INPUT.fasta --out_dir OUTPUT_DIR --db_dir /PATH/Se
 #forth, run iPhop with the added database
 iphop predict --fa_file /PATH/INPUT.fasta --out_dir OUTPUT_DIR --db_dir /PATH/iphop_add_db/ --num_threads 48
 ```
-
-## Virus metatranscriptome mapping
-
-
 
