@@ -4,7 +4,7 @@
 - Virus genome quality assessment: CheckV
 - Virus read-mapping: CheckM
 - Virus taxonomy: vConTACT3
-- Virus annotation: DRAM-v
+- Virus annotation and AMG identification: DRAM-v
 - Virus microdiversity assessment: MetaPop
 - Virus host prediction: iPhop
 
@@ -58,21 +58,20 @@ checkv end_to_end -t 48 /PATH/INPUT.fasta OUTPUT
 ```
 
 ## Virus read-mapping:
-Read-mapping vOTU using CoverM version 0.4.0
+vOTU read mapping performed with CoverM version 0.4.0
 ```
 # Read more about CoverM: https://github.com/wwood/CoverM
 # CoverM paper: https://doi.org/10.48550/arXiv.2501.11217
 coverm contig --coupled /PATH/INPUT_R1.fastq.gz /PATH/INPUT_R2.fastq.gz --reference /PATH/INPUT.fasta --min-read-percent-identity 0.95 --min-read-aligned-percent 0.75 --min-covered-fraction 0.7 -m trimmed_mean --bam-file-cache-directory BAM_FILES --discard-unmapped -t 28 > OUTPUT_mapping_SAMPLE.txt
 ```
 
-## Virus taxonomy analysis 
-vConTACT3 was used
+## Virus taxonomy analysis: 
 ```
 # Read more about vConTACT3: https://bitbucket.org/MAVERICLab/vcontact3/src/master/
 vcontact3 run --nucleotide /PATH/INPUT.fasta --db-domain prokaryotes --db-version 220 --output vc3_output_HT --exports cytoscape --db-path /PATH/vcontact3_dbs
 ```
 
-**Virus annotation and AMG identification using DRAM-v**
+## Virus annotation and AMG identification:
 ```
 # Read more about DRAM-v: https://github.com/WrightonLabCSU/DRAM
 # DRAM-v paper: https://academic.oup.com/nar/article/48/16/8883/5884738
@@ -87,7 +86,7 @@ DRAM-v.py annotate -i /PATH/INPUT.fasta -v /PATH/viral-affi-contigs-for-dramv.ta
 DRAM-v.py distill -i /PATH/annotations.tsv -o distill
 ```
 
-**Calculating virus microdiversity using MetaPop**
+## Virus microdiversity assessment:
 ```
 # Read more about MetaPop: https://github.com/metaGmetapop/metapop 
 # MetaPop paper: https://microbiomejournal.biomedcentral.com/articles/10.1186/s40168-022-01231-0
@@ -98,7 +97,7 @@ module load metapop
 metapop --input_samples /PATH/BAM_FILES/ --reference /PATH/FASTAS/ --norm /PATH/read_counts.txt --threads 48 --min_cov 70
 ```
 
-**Virus host prediction analysis using iPhop**
+## Virus host prediction analysis:
 ```
 # Read more about iPhop: https://bitbucket.org/srouxjgi/iphop/src/main/
 # iPhop paper: https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.3002083
@@ -117,7 +116,7 @@ iphop predict --fa_file /PATH/INPUT.fasta --out_dir OUTPUT_DIR --db_dir /PATH/Se
 iphop predict --fa_file /PATH/INPUT.fasta --out_dir OUTPUT_DIR --db_dir /PATH/iphop_add_db/ --num_threads 48
 ```
 
-**Virus metatranscriptome mapping**
+## Virus metatranscriptome mapping
 
 
 
