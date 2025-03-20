@@ -1,4 +1,4 @@
-# Virus bioinformatic workflow for virus identification, virus contigs clustering, vOTU genome quality assessment, vOTU read-mapping, taxonomy, annotation, virus microdiversity, and host prediction
+# Virus bioinformatic workflow and scripts
 - Virus identification: DeepVirFinder, VIBRANT, geNomad, and VirSorter2
 - Virus clustering (to get vOTU): MMseq2
 - Virus genome quality assessment: CheckV
