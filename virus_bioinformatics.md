@@ -96,6 +96,7 @@ module load metapop
 #third, prepared a list of reads count (read_counts.txt) tab-seperated: sample reads
 metapop --input_samples /PATH/BAM_FILES/ --reference /PATH/FASTAS/ --norm /PATH/read_counts.txt --threads 48 --min_cov 70
 ```
+Using global_contig_microdiversity.tsv in "10.Microdiversity" directory, the final microdiversity value (average π) for each sample was determined by averaging π values from 100 randomly selected viral populations across 1,000 subsamplings
 
 ## Virus host prediction analysis:
 ```
