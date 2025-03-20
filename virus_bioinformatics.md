@@ -1,53 +1,69 @@
 **DeepVirFinder virus identification**
+```
+# Read more about DeepVirfinder: https://github.com/jessieren/DeepVirFinder
+# DeepVirFinder paper: https://link.springer.com/article/10.1007/s40484-019-0187-4
 
-##Read more about DeepVirfinder: https://github.com/jessieren/DeepVirFinder
-
-##DeepVirFinder paper: https://link.springer.com/article/10.1007/s40484-019-0187-4
 module load DeepVirFinder/1.0
-dvf.py -i ${dirin}${sample}.fasta -o ${dir} -l 1000 -c 28
+dvf.py -i /PATH/INPUT.fasta -o OUTPUT_DIR -l 1000 -c 28
+```
+**VIBRANT virus identification**
+```
+# Read more about VIBRANT: https://github.com/AnantharamanLab/VIBRANT
+# VIBRANT paper: https://microbiomejournal.biomedcentral.com/articles/10.1186/s40168-020-00867-0
 
-##VIBRANT virus identification
-##Read more about VIBRANT: https://github.com/AnantharamanLab/VIBRANT
-##VIBRANT paper: https://microbiomejournal.biomedcentral.com/articles/10.1186/s40168-020-00867-0
 module load "VIBRANT/1.2.1"
-VIBRANT_run.py -i ${dirin}${sample}_metaspades3.13.fasta -f nucl -t 28 -virome -d ${dirdb}
+VIBRANT_run.py -i /PATH/INPUT.fasta -f nucl -t 28 -virome -d /PATH/VIBRANTDB/
+```
 
-##geNomad virus identification
-##Read more about geNomad: https://github.com/apcamargo/genomad
-##geNomad paper: https://www.nature.com/articles/s41587-023-01953-y
-genomad end-to-end --cleanup --splits 48 --threads 20 --min-virus-marker-enrichment 1 --min-virus-hallmarks 1 ${dirin}${sample}.fasta genomad_output /PATH/genomad_db
+**geNomad virus identification**
+```
+# Read more about geNomad: https://github.com/apcamargo/genomad
+# geNomad paper: https://www.nature.com/articles/s41587-023-01953-y
+genomad end-to-end --cleanup --splits 48 --threads 20 --min-virus-marker-enrichment 1 --min-virus-hallmarks 1 /PATH/INPUT.fasta genomad_output /PATH/genomad_db
+```
 
-##VirSrter2 virus identification
-##Read more about VirSorter2: https://github.com/jiarong/VirSorter2
-##VirSrter2 SOP: https://www.protocols.io/view/viral-sequence-identification-sop-with-virsorter2-5qpvoyqebg4o/v3
-##VirSrter2 paper: https://microbiomejournal.biomedcentral.com/articles/10.1186/s40168-020-00990-y
-VirSorter2-2.2.3.sif run -w ${dir} -i ${dirin}${sample}.fasta --include-groups dsDNAphage,ssDNA --keep-original-seq -j 48 --min-score 0.5 --min-length 5000 all
+**VirSrter2 virus identification**
+```
+# Read more about VirSorter2: https://github.com/jiarong/VirSorter2
+# VirSrter2 SOP: https://www.protocols.io/view/viral-sequence-identification-sop-with-virsorter2-5qpvoyqebg4o/v3
+# VirSrter2 paper: https://microbiomejournal.biomedcentral.com/articles/10.1186/s40168-020-00990-y
+VirSorter2-2.2.3.sif run -w DIR -i /PATH/INPUT.fasta --include-groups dsDNAphage,ssDNA --keep-original-seq -j 48 --min-score 0.5 --min-length 5000 all
+```
 
-##Virus genome quality assessment using CheckV
-##Read more about CheckV: https://bitbucket.org/berkeleylab/checkv/src/master/
-##CheckV paper: https://www.nature.com/articles/s41587-020-00774-7
+**Virus genome quality assessment using CheckV**
+```
+# Read more about CheckV: https://bitbucket.org/berkeleylab/checkv/src/master/
+# CheckV paper: https://www.nature.com/articles/s41587-020-00774-7
 module load CheckV/2021.02.03
-checkv end_to_end -t 48 ${sample}.fasta ${dir}${sample}
+checkv end_to_end -t 48 /PATH/INPUT.fasta OUTPUT
+```
 
-##Virus clustering at 89% ID and 80% coverage using MMseq2
-##Read more about MMseq2: https://github.com/soedinglab/MMseqs2
-##MMseq2 paper: https://www.nature.com/articles/nbt.3988
-mmseqs easy-cluster INPUT.fasta /PATH/output --min-seq-id 0.95 -c 0.8
+**Virus clustering at 89% ID and 80% coverage using MMseq2**
+```
+# Read more about MMseq2: https://github.com/soedinglab/MMseqs2
+# MMseq2 paper: https://www.nature.com/articles/nbt.3988
+mmseqs easy-cluster /PATH/INPUT.fasta /PATH/output --min-seq-id 0.95 -c 0.8
+```
 
-##read-mapping vOTU using CoverM version 0.4.0
-##Read more about CoverM: https://github.com/wwood/CoverM
-##CoverM paper: https://doi.org/10.48550/arXiv.2501.11217
-coverm contig --coupled ${dirin}${sample}_R1.fastq.gz ${dirin}${sample}_R2.fastq.gz --reference /PATH/INPUT.fasta --min-read-percent-identity 0.95 --min-read-aligned-percent 0.75 --min-covered-fraction 0.7 -m trimmed_mean --bam-file-cache-directory BAM_FILES --discard-unmapped -t 28 > OUTPUT_mapping_${sample}.txt
+**read-mapping vOTU using CoverM version 0.4.0**
+```
+# Read more about CoverM: https://github.com/wwood/CoverM
+# CoverM paper: https://doi.org/10.48550/arXiv.2501.11217
+coverm contig --coupled /PATH/INPUT_R1.fastq.gz /PATH/INPUT_R2.fastq.gz --reference /PATH/INPUT.fasta --min-read-percent-identity 0.95 --min-read-aligned-percent 0.75 --min-covered-fraction 0.7 -m trimmed_mean --bam-file-cache-directory BAM_FILES --discard-unmapped -t 28 > OUTPUT_mapping_SAMPLE.txt
+```
 
-##Virus taxonomy analysis using vConTACT3
-##Read more about vConTACT3: https://bitbucket.org/MAVERICLab/vcontact3/src/master/
+**Virus taxonomy analysis using vConTACT3**
+```
+# Read more about vConTACT3: https://bitbucket.org/MAVERICLab/vcontact3/src/master/
 vcontact3 run --nucleotide /PATH/INPUT.fasta --db-domain prokaryotes --db-version 220 --output vc3_output_HT --exports cytoscape --db-path /PATH/vcontact3_dbs
+```
 
-##Virus annotation and AMG identification using DRAM-v
-##Read more about DRAM-v: https://github.com/WrightonLabCSU/DRAM
-##DRAM-v paper: https://academic.oup.com/nar/article/48/16/8883/5884738
+**Virus annotation and AMG identification using DRAM-v**
+```
+# Read more about DRAM-v: https://github.com/WrightonLabCSU/DRAM
+# DRAM-v paper: https://academic.oup.com/nar/article/48/16/8883/5884738
 #first, prepare the input data from VirSorter2 --prep-for-dramv
-VirSorter2-2.2.3.sif run --seqname-suffix-off --viral-gene-enrich-off --provirus-off --prep-for-dramv -i checkv/combined.fna -w ${dir} --include-groups dsDNAphage,ssDNA --min-length 5000 --min-score 0.5 -j 28 all
+VirSorter2-2.2.3.sif run --seqname-suffix-off --viral-gene-enrich-off --provirus-off --prep-for-dramv -i checkv/combined.fna -w DIR --include-groups dsDNAphage,ssDNA --min-length 5000 --min-score 0.5 -j 28 all
 
 #DRAM-v annotation
 module load DRAM
@@ -55,19 +71,23 @@ DRAM-v.py annotate -i /PATH/INPUT.fasta -v /PATH/viral-affi-contigs-for-dramv.ta
 
 #DRAM-v distill
 DRAM-v.py distill -i /PATH/annotations.tsv -o distill
+```
 
-##Calculating virus microdiversity using MetaPop
-##Read more about MetaPop: https://github.com/metaGmetapop/metapop 
-##MetaPop paper: https://microbiomejournal.biomedcentral.com/articles/10.1186/s40168-022-01231-0
+**Calculating virus microdiversity using MetaPop**
+```
+# Read more about MetaPop: https://github.com/metaGmetapop/metapop 
+# MetaPop paper: https://microbiomejournal.biomedcentral.com/articles/10.1186/s40168-022-01231-0
 module load metapop
 #first, you need to split all the votus: FASTAS/
 #second, prepared bam files, the mapping files of all the contigs to the reads: BAM_FILES/
 #third, prepared a list of reads count (read_counts.txt) tab-seperated: sample reads
 metapop --input_samples /PATH/BAM_FILES/ --reference /PATH/FASTAS/ --norm /PATH/read_counts.txt --threads 48 --min_cov 70
+```
 
-##Virus host prediction analysis using iPhop
-##Read more about iPhop: https://bitbucket.org/srouxjgi/iphop/src/main/
-##iPhop paper: https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.3002083
+**Virus host prediction analysis using iPhop**
+```
+# Read more about iPhop: https://bitbucket.org/srouxjgi/iphop/src/main/
+# iPhop paper: https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.3002083
 #first, prepare the gtdbtk analysis: MAG_gtdbtk/
 module load GTDB-Tk/1.4.1
 gtdbtk de_novo_wf --genome_dir /PATH/MAG_DIR/ --bacteria --outgroup_taxon p__Cyanobacteria --out_dir ${dir} --cpus 48 --force --extension fasta
@@ -81,8 +101,9 @@ iphop predict --fa_file /PATH/INPUT.fasta --out_dir OUTPUT_DIR --db_dir /PATH/Se
 
 #forth, run iPhop with the added database
 iphop predict --fa_file /PATH/INPUT.fasta --out_dir OUTPUT_DIR --db_dir /PATH/iphop_add_db/ --num_threads 48
+```
 
-##Virus metatranscriptome mapping
+**Virus metatranscriptome mapping**
 
 
 
