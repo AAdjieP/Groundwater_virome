@@ -7,6 +7,7 @@
 - Virus annotation and AMG identification: DRAM-v
 - Virus microdiversity assessment: MetaPop
 - Virus host prediction: iPhop
+- CRISPR-Cas spacers identificationa and matches: minced and blastn
 
 ## Virus identification:
 **DeepVirFinder virus identification**
@@ -116,4 +117,41 @@ iphop predict --fa_file /PATH/INPUT.fasta --out_dir OUTPUT_DIR --db_dir /PATH/Se
 #forth, run iPhop with the added database
 iphop predict --fa_file /PATH/INPUT.fasta --out_dir OUTPUT_DIR --db_dir /PATH/iphop_add_db/ --num_threads 48
 ```
+
+## Identification of CRISPR-Cas spacers:
+This analysis was done to identify pro-spacers from MAGs. We then assess whether the proto-spacer matches between viruses and both CPR/DPANN and non-CPR/non-DPANN bacterial and archaeal MAGs
+```
+# Read more about minced: https://github.com/ctSkennerton/minced
+module load minced
+minced -minNR 3 -spacers /PATH/INPUT.fasta OUTPUT_CRISPR-Cas_spacers
+
+# Spacer blastn
+module load blast
+
+#first: makeblastdb -in virus_genome.fasta -dbtype nucl -out virus_db
+#see more on: https://www.ncbi.nlm.nih.gov/books/NBK279684/table/appendices.T.options_common_to_all_blast/
+blastn \
+  -query MAG_spacers.fa \
+  -db /PATH/FINAL_vOTU_db \
+  -task blastn-short \
+  -word_size 7 \
+  -evalue 1e-5 \
+  -reward 1 -penalty -1 \
+  -ungapped \
+  -outfmt "6 qseqid sseqid pident length mismatch qlen qstart qend sstart send evalue bitscore qcovs" \
+  -dust no \
+  -num_threads 4 \
+  -out BLAST_OUTPUT.txt
+
+
+#Filter for ≤1 Mismatch
+awk '$3 >= 95 && $13 >= 90' BLAST_RESULTS.txt > filtered_BLAST_RESULTS.txt
+
+#Filter for 0 Mismatch
+awk '$5 == 0 && $13 >= 90' BLAST_RESULTS.txt > filtered_BLAST_RESULTS.txt
+
+#Filter for full-length matches only (100% query coverage)
+awk '$5 == 0 && $13 == 100' blast_results_all_MAGs.txt > filtered_BLAST_RESULTS.txt
+```
+
 
