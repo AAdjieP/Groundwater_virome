@@ -1,7 +1,11 @@
 # Metagenomics processing and Metagenomics-assembled genomes (MAGs) workflow and scripts
-- Virus identification: DeepVirFinder, VIBRANT, geNomad, and VirSorter2
-- Virus clustering (to get vOTU): MMseq2
-- 
+- Metagenome processing: quality control (BBDuk) and reporting (fastp)
+- Metagenome assembly: MetaSpades, MEGAHIT
+- MAG dereplication: drep
+- MAG read-mapping: CoverM
+- MAG Taxonomy analysis: GTDBTK
+- MAG annotation: DRAM
+- Long-reads processing: guppy_basecaller, assembly (hybrid
 
 ## Metagenome processing
 **_Quality control_**
