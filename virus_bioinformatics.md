@@ -105,8 +105,8 @@ Using global_contig_microdiversity.tsv in "10.Microdiversity" directory, the fin
 # iPhop paper: https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.3002083
 #first, prepare the gtdbtk analysis: MAG_gtdbtk/
 module load GTDB-Tk/1.4.1
-gtdbtk de_novo_wf --genome_dir /PATH/MAG_DIR/ --bacteria --outgroup_taxon p__Cyanobacteria --out_dir ${dir} --cpus 48 --force --extension fasta
-gtdbtk de_novo_wf --genome_dir /PATH/MAG_DIR/ --archaea --outgroup_taxon p__Altarchaeota --out_dir ${dir} --cpus 48 --force --extension fasta
+gtdbtk de_novo_wf --genome_dir /PATH/MAG_DIR/ --bacteria --outgroup_taxon p__Cyanobacteria --out_dir MAG_bac_gtdbtk/ --cpus 48 --force --extension fasta
+gtdbtk de_novo_wf --genome_dir /PATH/MAG_DIR/ --archaea --outgroup_taxon p__Altarchaeota --out_dir MAG_arc_gtdbtk/ --cpus 48 --force --extension fasta
 
 #second, add database (Metagenome-assembled genomes) as a symbolic links to the original iPhop database (/PATH/iPHoP/Sept_2021_pub_rw)
 iphop add_to_db --fna_dir /PATH/MAG_DIR/ --gtdb_dir /PATH/MAG_gtdbtk/ --out_dir iphop_add_db --db_dir /fs/ess/PAS1117/apratama/iphop-db/Sept_2021_pub_rw/ -t 48
@@ -151,7 +151,7 @@ awk '$3 >= 95 && $13 >= 90' BLAST_RESULTS.txt > filtered_BLAST_RESULTS.txt
 awk '$5 == 0 && $13 >= 90' BLAST_RESULTS.txt > filtered_BLAST_RESULTS.txt
 
 #Filter for full-length matches only (100% query coverage)
-awk '$5 == 0 && $13 == 100' blast_results_all_MAGs.txt > filtered_BLAST_RESULTS.txt
+awk '$5 == 0 && $13 == 100' BLAST_RESULTS.txt > filtered_BLAST_RESULTS.txt
 ```
 
 
