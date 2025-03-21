@@ -88,7 +88,7 @@ guppy_basecaller -i fast5/ -s H53_02um_2022 -c dna_r9.4.1_450bps_sup.cfg --compr
 guppy_basecaller -i /PATH/fast5 -s /work/perezcar/Nanopore_>
 ```
 
-**_Quality control_**
+**_Hybrid assembly_**
 ```
 module load SPAdes/3.15.2
 spades.py --meta -o OUTPUT_Nanopore -1 READS-SAMPLE_R1.fastq.gz -2 READS-SAMPLE_R2.fastq.gz -t INTEGER -m 380 --nanopore /PATH/DIR/
