@@ -10,7 +10,7 @@
 - CRISPR-Cas spacers identificationa and matches: minced and blastn
 
 ## Virus identification:
-**DeepVirFinder virus identification**
+**_DeepVirFinder_**
 ```
 # Read more about DeepVirfinder: https://github.com/jessieren/DeepVirFinder
 # DeepVirFinder paper: https://link.springer.com/article/10.1007/s40484-019-0187-4
@@ -18,7 +18,7 @@
 module load DeepVirFinder/1.0
 dvf.py -i /PATH/INPUT.fasta -o OUTPUT_DIR -l 1000 -c 28
 ```
-**VIBRANT virus identification**
+**_VIBRANT_**
 ```
 # Read more about VIBRANT: https://github.com/AnantharamanLab/VIBRANT
 # VIBRANT paper: https://microbiomejournal.biomedcentral.com/articles/10.1186/s40168-020-00867-0
@@ -27,14 +27,14 @@ module load "VIBRANT/1.2.1"
 VIBRANT_run.py -i /PATH/INPUT.fasta -f nucl -t 28 -virome -d /PATH/VIBRANTDB/
 ```
 
-**geNomad virus identification**
+**_geNomad_**
 ```
 # Read more about geNomad: https://github.com/apcamargo/genomad
 # geNomad paper: https://www.nature.com/articles/s41587-023-01953-y
 genomad end-to-end --cleanup --splits 48 --threads 20 --min-virus-marker-enrichment 1 --min-virus-hallmarks 1 /PATH/INPUT.fasta genomad_output /PATH/genomad_db
 ```
 
-**VirSrter2 virus identification**
+**_VirSrter2_**
 ```
 # Read more about VirSorter2: https://github.com/jiarong/VirSorter2
 # VirSrter2 SOP: https://www.protocols.io/view/viral-sequence-identification-sop-with-virsorter2-5qpvoyqebg4o/v3
