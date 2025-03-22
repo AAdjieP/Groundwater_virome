@@ -16,7 +16,7 @@
 # DeepVirFinder paper: https://link.springer.com/article/10.1007/s40484-019-0187-4
 
 module load DeepVirFinder/1.0
-dvf.py -i /PATH/INPUT.fasta -o OUTPUT_DIR -l 1000 -c 28
+dvf.py -i /PATH/INPUT.fasta -o OUTPUT_DIR -l 1000 -c INTEGER
 ```
 **_VIBRANT_**
 ```
@@ -24,14 +24,14 @@ dvf.py -i /PATH/INPUT.fasta -o OUTPUT_DIR -l 1000 -c 28
 # VIBRANT paper: https://microbiomejournal.biomedcentral.com/articles/10.1186/s40168-020-00867-0
 
 module load "VIBRANT/1.2.1"
-VIBRANT_run.py -i /PATH/INPUT.fasta -f nucl -t 28 -virome -d /PATH/VIBRANTDB/
+VIBRANT_run.py -i /PATH/INPUT.fasta -f nucl -t INTEGER -virome -d /PATH/VIBRANTDB/
 ```
 
 **_geNomad_**
 ```
 # Read more about geNomad: https://github.com/apcamargo/genomad
 # geNomad paper: https://www.nature.com/articles/s41587-023-01953-y
-genomad end-to-end --cleanup --splits 48 --threads 20 --min-virus-marker-enrichment 1 --min-virus-hallmarks 1 /PATH/INPUT.fasta genomad_output /PATH/genomad_db
+genomad end-to-end --cleanup --splits 48 --threads INTEGER --min-virus-marker-enrichment 1 --min-virus-hallmarks 1 /PATH/INPUT.fasta genomad_output /PATH/genomad_db
 ```
 
 **_VirSrter2_**
@@ -39,7 +39,7 @@ genomad end-to-end --cleanup --splits 48 --threads 20 --min-virus-marker-enrichm
 # Read more about VirSorter2: https://github.com/jiarong/VirSorter2
 # VirSrter2 SOP: https://www.protocols.io/view/viral-sequence-identification-sop-with-virsorter2-5qpvoyqebg4o/v3
 # VirSrter2 paper: https://microbiomejournal.biomedcentral.com/articles/10.1186/s40168-020-00990-y
-VirSorter2-2.2.3.sif run -w DIR -i /PATH/INPUT.fasta --include-groups dsDNAphage,ssDNA --keep-original-seq -j 48 --min-score 0.5 --min-length 5000 all
+VirSorter2-2.2.3.sif run -w DIR -i /PATH/INPUT.fasta --include-groups dsDNAphage,ssDNA --keep-original-seq -j INTEGER --min-score 0.5 --min-length 5000 all
 ```
 
 ## Virus clustering:
@@ -55,7 +55,7 @@ mmseqs easy-cluster /PATH/INPUT.fasta /PATH/output --min-seq-id 0.95 -c 0.8
 # Read more about CheckV: https://bitbucket.org/berkeleylab/checkv/src/master/
 # CheckV paper: https://www.nature.com/articles/s41587-020-00774-7
 module load CheckV/2021.02.03
-checkv end_to_end -t 48 /PATH/INPUT.fasta OUTPUT
+checkv end_to_end -t INTEGER /PATH/INPUT.fasta OUTPUT
 ```
 
 ## Virus read-mapping:
@@ -63,7 +63,7 @@ vOTU read mapping performed with CoverM version 0.4.0
 ```
 # Read more about CoverM: https://github.com/wwood/CoverM
 # CoverM paper: https://doi.org/10.48550/arXiv.2501.11217
-coverm contig --coupled /PATH/INPUT_R1.fastq.gz /PATH/INPUT_R2.fastq.gz --reference /PATH/INPUT.fasta --min-read-percent-identity 0.95 --min-read-aligned-percent 0.75 --min-covered-fraction 0.7 -m trimmed_mean --bam-file-cache-directory BAM_FILES --discard-unmapped -t 28 > OUTPUT_mapping_SAMPLE.txt
+coverm contig --coupled /PATH/INPUT_R1.fastq.gz /PATH/INPUT_R2.fastq.gz --reference /PATH/INPUT.fasta --min-read-percent-identity 0.95 --min-read-aligned-percent 0.75 --min-covered-fraction 0.7 -m trimmed_mean --bam-file-cache-directory BAM_FILES --discard-unmapped -t INTEGER > OUTPUT_mapping_SAMPLE.txt
 ```
 
 ## Virus taxonomy analysis: 
@@ -77,11 +77,11 @@ vcontact3 run --nucleotide /PATH/INPUT.fasta --db-domain prokaryotes --db-versio
 # Read more about DRAM-v: https://github.com/WrightonLabCSU/DRAM
 # DRAM-v paper: https://academic.oup.com/nar/article/48/16/8883/5884738
 #first, prepare the input data from VirSorter2 --prep-for-dramv
-VirSorter2-2.2.3.sif run --seqname-suffix-off --viral-gene-enrich-off --provirus-off --prep-for-dramv -i checkv/combined.fna -w DIR --include-groups dsDNAphage,ssDNA --min-length 5000 --min-score 0.5 -j 28 all
+VirSorter2-2.2.3.sif run --seqname-suffix-off --viral-gene-enrich-off --provirus-off --prep-for-dramv -i checkv/combined.fna -w DIR --include-groups dsDNAphage,ssDNA --min-length 5000 --min-score 0.5 -j INTEGER all
 
 #DRAM-v annotation
 module load DRAM
-DRAM-v.py annotate -i /PATH/INPUT.fasta -v /PATH/viral-affi-contigs-for-dramv.tab -o HT_final --min_contig_size 1000 --threads 48
+DRAM-v.py annotate -i /PATH/INPUT.fasta -v /PATH/viral-affi-contigs-for-dramv.tab -o HT_final --min_contig_size 1000 --threads INTEGER
 
 #DRAM-v distill
 DRAM-v.py distill -i /PATH/annotations.tsv -o distill
@@ -95,7 +95,7 @@ module load metapop
 #first, you need to split all the votus: FASTAS/
 #second, prepared bam files, the mapping files of all the contigs to the reads: BAM_FILES/
 #third, prepared a list of reads count (read_counts.txt) tab-seperated: sample reads
-metapop --input_samples /PATH/BAM_FILES/ --reference /PATH/FASTAS/ --norm /PATH/read_counts.txt --threads 48 --min_cov 70
+metapop --input_samples /PATH/BAM_FILES/ --reference /PATH/FASTAS/ --norm /PATH/read_counts.txt --threads INTEGER --min_cov 70
 ```
 Using global_contig_microdiversity.tsv in "10.Microdiversity" directory, the final microdiversity value (average π) for each sample was determined by averaging π values from 100 randomly selected viral populations across 1,000 subsamplings
 
@@ -105,17 +105,17 @@ Using global_contig_microdiversity.tsv in "10.Microdiversity" directory, the fin
 # iPhop paper: https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.3002083
 #first, prepare the gtdbtk analysis: MAG_gtdbtk/
 module load GTDB-Tk/1.4.1
-gtdbtk de_novo_wf --genome_dir /PATH/MAG_DIR/ --bacteria --outgroup_taxon p__Cyanobacteria --out_dir MAG_bac_gtdbtk/ --cpus 48 --force --extension fasta
-gtdbtk de_novo_wf --genome_dir /PATH/MAG_DIR/ --archaea --outgroup_taxon p__Altarchaeota --out_dir MAG_arc_gtdbtk/ --cpus 48 --force --extension fasta
+gtdbtk de_novo_wf --genome_dir /PATH/MAG_DIR/ --bacteria --outgroup_taxon p__Cyanobacteria --out_dir MAG_bac_gtdbtk/ --cpus INTEGER --force --extension fasta
+gtdbtk de_novo_wf --genome_dir /PATH/MAG_DIR/ --archaea --outgroup_taxon p__Altarchaeota --out_dir MAG_arc_gtdbtk/ --cpus INTEGER --force --extension fasta
 
 #second, add database (Metagenome-assembled genomes) as a symbolic links to the original iPhop database (/PATH/iPHoP/Sept_2021_pub_rw)
-iphop add_to_db --fna_dir /PATH/MAG_DIR/ --gtdb_dir /PATH/MAG_gtdbtk/ --out_dir iphop_add_db --db_dir /fs/ess/PAS1117/apratama/iphop-db/Sept_2021_pub_rw/ -t 48
+iphop add_to_db --fna_dir /PATH/MAG_DIR/ --gtdb_dir /PATH/MAG_gtdbtk/ --out_dir iphop_add_db --db_dir /fs/ess/PAS1117/apratama/iphop-db/Sept_2021_pub_rw/ -t INTEGER
 
 #third, run iPhop with default database
-iphop predict --fa_file /PATH/INPUT.fasta --out_dir OUTPUT_DIR --db_dir /PATH/Sept_2021_pub_rw/ --num_threads 48
+iphop predict --fa_file /PATH/INPUT.fasta --out_dir OUTPUT_DIR --db_dir /PATH/Sept_2021_pub_rw/ --num_threads INTEGER
 
 #forth, run iPhop with the added database
-iphop predict --fa_file /PATH/INPUT.fasta --out_dir OUTPUT_DIR --db_dir /PATH/iphop_add_db/ --num_threads 48
+iphop predict --fa_file /PATH/INPUT.fasta --out_dir OUTPUT_DIR --db_dir /PATH/iphop_add_db/ --num_threads INTEGER
 ```
 
 ## Identification of CRISPR-Cas spacers:
@@ -140,7 +140,7 @@ blastn \
   -ungapped \
   -outfmt "6 qseqid sseqid pident length mismatch qlen qstart qend sstart send evalue bitscore qcovs" \
   -dust no \
-  -num_threads 4 \
+  -num_threads INTEGER \
   -out BLAST_OUTPUT.txt
 
 
