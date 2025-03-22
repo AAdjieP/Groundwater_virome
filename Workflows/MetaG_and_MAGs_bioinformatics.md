@@ -5,7 +5,7 @@
 - MAG read-mapping: CoverM
 - MAG Taxonomy analysis: GTDBTK
 - MAG annotation: DRAM
-- Long-reads processing: guppy_basecaller, assembly (hybrid
+- Long-reads processing: guppy_basecaller, assembly (hybrid)
 
 ## Metagenome processing
 **_Quality control_**
@@ -34,7 +34,7 @@ fastp -i READS-SAMPLE_R1.fastq.gz -I READS-SAMPLE_R2.fastq.gz -R SAMPLE_fastp_re
 # Read more about Spades: [https://github.com/AnantharamanLab/VIBRANT](https://github.com/ablab/spades)
 # Spade paper: [https://microbiomejournal.biomedcentral.com/articles/10.1186/s40168-020-00867-0](https://currentprotocols.onlinelibrary.wiley.com/doi/abs/10.1002/cpbi.102)
 module load SPAdes/3.15.2
-spades.py --meta -o ${sample} -1 ${sample}_R1.fastq.gz -2 ${sample}_R2.fastq.gz -t ${SLURM_CPUS_PER_TASK:-1} -m 340
+spades.py --meta -o ${sample} -1 ${sample}_R1.fastq.gz -2 ${sample}_R2.fastq.gz -t INTEGER -k 21,33,55,77 -m 190
 ```
 
 **_MEGAHIT_**
@@ -57,7 +57,7 @@ dRep dereplicate --debug -p INTEGER -pa 0.90 -sa 0.99 -comp 50 -con 10 /PATH/OUT
 # Read more about CoverM: https://github.com/wwood/CoverM
 # CoverM paper: https://doi.org/10.48550/arXiv.2501.11217
 # CoverM version 0.4.0
-coverm genome -1 READS-SAMPLE_R1.fastq.gz -2 READ-SAMPLE_R2.fastq.gz --genome-fasta-directory /PATH/DIR --genome-fasta-extension fasta --min-read-percent-identity 0.95 --min-read-aligned-percent 0.75 --min-covered-fraction 0.25 --methods trimmed_mean --bam-file-cache-directory BAMS_OUTPUT --discard-unmapped -t 20 > SAMPLE.txt
+coverm genome -1 READS-SAMPLE_R1.fastq.gz -2 READ-SAMPLE_R2.fastq.gz --genome-fasta-directory /PATH/DIR --genome-fasta-extension fasta --min-read-percent-identity 0.95 --min-read-aligned-percent 0.75 --min-covered-fraction 0.25 --methods trimmed_mean --bam-file-cache-directory BAMS_OUTPUT --discard-unmapped -t INTEGER > SAMPLE.txt
 ```
 
 ## Taxonomy assignment analysis
@@ -65,7 +65,7 @@ coverm genome -1 READS-SAMPLE_R1.fastq.gz -2 READ-SAMPLE_R2.fastq.gz --genome-fa
 # Read more about GTDBTK: https://github.com/Ecogenomics/GTDBTk; https://gtdb.ecogenomic.org
 # GTDBTK paper: https://doi.org/10.1093/bioinformatics/btac672
 module load GTDB-Tk/1.4.1
-gtdbtk classify_wf --genome_dir /PATH/DIR/ --extension fasta --cpus 48 --out_dir /PATH/GTDBTK_OUTPUT/
+gtdbtk classify_wf --genome_dir /PATH/DIR/ --extension fasta --cpus INTEGER --out_dir /PATH/GTDBTK_OUTPUT/
 ```
 
 ## MAG annotation
