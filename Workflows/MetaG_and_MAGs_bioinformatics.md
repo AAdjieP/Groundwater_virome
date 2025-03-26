@@ -45,6 +45,51 @@ module load MEGAHIT/1.2.9-Python-2.7.18
 megahit -1 SAMPLE_1.fastq.gz -2 SAMPLE}_2.fastq.gz -o OUTPUT -t INTEGER
 ```
 
+## Binning process
+**_MetaSpades_**
+```
+# Read more about MetaWrap: https://github.com/bxlab/metaWRAP
+# MetaWrap paper: https://microbiomejournal.biomedcentral.com/articles/10.1186/s40168-018-0541-1
+# 40 markers
+metawrap binning -o /OUTPUT/ -t INT --universal -a /INPUT/assembly.fasta --maxbin2 --metabat2 --concoct /READS_DIR/reads_1.fastq /READS_DIR/reads_2.fastq
+# 107 markers
+metawrap binning -o /OUTPUT/ -t INT -a /INPUT/assembly.fasta --maxbin2 /READS_DIR/reads_1.fastq /READS_DIR/reads_2.fastq
+```
+
+**_BinSanity_**
+```
+# Read more about BinSanity: https://github.com/edgraham/BinSanity; https://github.com/edgraham/BinSanity/wiki
+# BinSanity paper: https://pmc.ncbi.nlm.nih.gov/articles/PMC5345454/
+# Binsanity-profile uses featureCounts to produce the coverage profiles requires in Binsanity
+Binsanity-profile -i /INPUT/*.fasta -s /metaWRAP_out/work_files/ -T 24 -o /cov_profiles/ --ids /PATH/SAMPLE.txt -c /cov_profiles/binsanity
+
+# Binsanity-wf runs Binsanity and Binsanity-refine sequentially to optimize cluster results
+Binsanity-wf -f /metaWRAP_out/metawrap_bins/ -l /PATH/*.fasta -c /cov_profiles/binsanity.cov.x100.lognorm -o /final_bins --threads INTEGER
+```
+
+**_Abawaca_**
+```
+# Read more about Abawaca: https://github.com/CK7/abawaca
+# Running abawaca=1.0.7
+# Generate ESOM (Emergent Self-Organizing Map) files that are data inputs used by ABAWACA to perform binning based on machine learning clustering
+perl /global/apps/metagenomics/prepare_esom_files.pl \
+  -m INTEGER \  # minimal contigs length We used 5000 and 10000
+  --coverage \
+  -sa $(ls /work/.../metawrap_binning/work_files/*.sorted.bam) \
+  /work/.../abawaca_binning/ \
+  /work/.../scaffolds_3000.fasta
+# Run abawaca  
+abawaca /PATH/esom.names /PATH/esom.lrn /PATH/*.fasta /OUTPUT/
+```
+
+**_Bins Refinements_**
+```
+# Refining ABAWACA + BINSANITY Bins
+metawrap bin_refinement -o /OUTPUT -t  INTEGER -c 50 -x 10 -A /INPUT_abawaca_BINS_1 -B /INPUT_abawaca_BINS_2 -C /INPUT_binsanity_BINS_1
+# FInal refinement
+metawrap bin_refinement -o /OUTPUT -t  INTEGER -c 50 -x 10 -A /PATH/metabat2_bins -B /PATH/concoct_bins -C /PATH/metawrap_50_10_bins
+```
+
 ## MAG DEREPLICATION 
 ```
 # Read more about drep: https://github.com/MrOlm/drep
