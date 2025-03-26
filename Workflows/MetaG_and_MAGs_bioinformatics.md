@@ -1,6 +1,7 @@
 # Metagenomics processing and Metagenomics-assembled genomes (MAGs) workflow and scripts
 - Metagenome processing: quality control (BBDuk) and reporting (fastp)
 - Metagenome assembly: MetaSpades, MEGAHIT
+- Metagenome binning: Binsanity, abawaca, maxbin2, CONCOCT and metabat2 
 - MAG dereplication: drep
 - MAG read-mapping: CoverM
 - MAG Taxonomy analysis: GTDBTK
