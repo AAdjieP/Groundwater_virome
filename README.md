@@ -9,4 +9,4 @@ Groundwater ecosystems harbor diverse microbial communities adapted to energy-li
 Data used for this study were deposited into the European Nucleotide Archive (ENA). The raw 2019 metagenomic sequencing reads for the studied samples were deposited under ENA project accession PRJEB36505, and raw 2022 metagenomic sequencing reads for the studied samples were deposited under NCBI project accession PRJNA1236243. Processed data are available through XXXX, including viral populations (≥ 5 kb), AMG genes, AMG cluster genes, and identified CRIPSR-Cas spacers (XXXXX).
 
 # **Reference**
-Akbar Adjie Pratama, Olga Pérez-Carrascal, Matthew B. Sullivan, and Kirsten Küsel. Hidden viral players: Diversity and ecological roles of viruses in groundwater microbiomes . In preparation
+Akbar Adjie Pratama, Olga Pérez-Carrascal, Matthew B. Sullivan, and Kirsten Küsel. Hidden viral players: Diversity and ecological roles of viruses in groundwater microbiomes . _In preparation_
