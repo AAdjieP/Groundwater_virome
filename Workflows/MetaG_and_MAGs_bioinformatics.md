@@ -130,8 +130,8 @@ module load gcccuda/2020b
 module load fosscuda/2020b
 module load GCC/10.2.0
 module load CUDA/11.1.1
-guppy_basecaller -i fast5/ -s H53_02um_2022 -c dna_r9.4.1_450bps_sup.cfg --compress_fastq  --recursive  -x "cuda:0" --trim_primers --trim_adapters  --do_read_splitting
-guppy_basecaller -i /PATH/fast5 -s /work/perezcar/Nanopore_>
+guppy_basecaller -i fast5/ -s SAMPLE -c dna_r9.4.1_450bps_sup.cfg --compress_fastq  --recursive  -x "cuda:0" --trim_primers --trim_adapters  --do_read_splitting
+guppy_basecaller -i /PATH/fast5 -s /PATH/DIR/
 ```
 
 **_Hybrid assembly_**
