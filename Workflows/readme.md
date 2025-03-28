@@ -10,7 +10,7 @@ This directory contains workflows for (_i_) metagenomics processing and Metageno
 - MAG annotation: DRAM
 - Long-reads processing: guppy_basecaller, assembly (hybrid)
 
-**Virus bioinformatic workflow and scripts**
+**Virus bioinformatic workflow and scripts** (Virus_bioinformatics.md)
 - Virus identification: DeepVirFinder, VIBRANT, geNomad, and VirSorter2
 - Virus clustering (to get vOTU): MMseq2
 - Virus genome quality assessment: CheckV
