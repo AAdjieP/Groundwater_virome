@@ -1,6 +1,6 @@
 This directory contains workflows for (_i_) metagenomics processing and Metagenomic assembled genomes (MAGs) and (_ii_) virus bioinformatics
 
-**Metagenomics processing and Metagenomics-assembled genomes (MAGs) workflow and scripts**
+**Metagenomics processing and Metagenomics-assembled genomes (MAGs) workflow and scripts** (./MetaG_and_MAGs_bioinformatics.md)
 - Metagenome processing: quality control (BBDuk) and reporting (fastp)
 - Metagenome assembly: MetaSpades, MEGAHIT
 - Metagenome binning: Binsanity, abawaca, maxbin2, CONCOCT and metabat2
@@ -10,7 +10,7 @@ This directory contains workflows for (_i_) metagenomics processing and Metageno
 - MAG annotation: DRAM
 - Long-reads processing: guppy_basecaller, assembly (hybrid)
 
-**Virus bioinformatic workflow and scripts** (Virus_bioinformatics.md)
+**Virus bioinformatic workflow and scripts** (./Virus_bioinformatics.md)
 - Virus identification: DeepVirFinder, VIBRANT, geNomad, and VirSorter2
 - Virus clustering (to get vOTU): MMseq2
 - Virus genome quality assessment: CheckV
