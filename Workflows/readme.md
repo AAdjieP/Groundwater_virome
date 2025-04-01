@@ -1,4 +1,4 @@
-This directory contains workflows for (_i_) metagenomics processing and Metagenomic assembled genomes (MAGs) and (_ii_) virus bioinformatics
+This directory contains workflows for (_i_) metagenomics processing and Metagenomic assembled genomes (MAGs) analysis and (_ii_) virus bioinformatics
 
 [**Metagenomics processing and Metagenomics-assembled genomes (MAGs) workflow and scripts**](./MetaG_and_MAGs_bioinformatics.md)
 - Metagenome processing: quality control (BBDuk) and reporting (fastp)
