@@ -1,5 +1,7 @@
 1._AMG_bubble_perwell.csv_: summed of relative abundance of AMGs (represented by vOTUs) across the well. This is used to make a relative abundance (bubble plot) in figure 4B
+
 2._AMG_cat_metaT_final.csv_: the metatranscriptome of AMG across the well
+
 3._AMG_filtered_manual.csv_: the cout of AMGs and their caterogies
 4._CPR_DPANN_final19-consv.ntw_: final data used to make co-occurrence network of CPR_DPANN and other taxa for 2019
 5._CPR_DPANN_final19.cys_: cytoscape of co-occurrence network of CPR_DPANN and other taxa for 2019
