@@ -1,0 +1,25 @@
+﻿category,subheader,subheader2,count
+carbon utilization (Woodcroft),galactose degradation,1_galactose_degradation,501
+carbon utilization,pyruvate metabolism,2_pyruvate_metabolism,316
+carbon utilization,pentose pathway,3_pentose_pathway,290
+carbon utilization,glycolysis,4_glycolysis,140
+carbon utilization (Woodcroft),mannose degradation,5_mannose_degradation,12
+carbon utilization (Woodcroft),fucose degradation,6_fucose_degradation,9
+carbon utilization,hydrocarbon degradation,7_hydrocarbon_degradation,8
+carbon utilization,TCA,8_TCA,6
+carbon utilization,Polyphenolics Cleavage,9_Polyphenolics_Cleavage,6
+Energy,Sulfur,10_Sulfur,144
+Energy,C1,11_C1,72
+Energy,Electron transport Chain,12_Electron_transport_Chain,8
+Energy,Oxygen,13_Oxygen,1
+Energy,Metal Reduction,14_Metal_Reduction,1
+Energy,Nitrogen,15_Nitrogen,1
+MISC,Nucleotide,17_Nucleotide,1165
+MISC,Antibiotic Resistance,18_Antibiotic_Resistance,140
+MISC,aerobic corrin ring synthesis,19_aerobic_corrin_ring_synthesis,93
+MISC,MISC,20_MISC,63
+MISC,ADO-CBL synthesis,21_ADO-CBL_synthesis,10
+MISC,Flagella Structure,22_Flagella_Structure,5
+Organic Nitrogen,Peptidase,23_Peptidase,509
+Organic Nitrogen,Amino Acid,24_Amino_Acid,496
+Transporters,Transporters,25_Transporters,97
