@@ -2,11 +2,11 @@
 - Metagenome processing: quality control (BBDuk) and reporting (fastp)
 - Metagenome assembly: MetaSpades, MEGAHIT
 - Metagenome binning: Binsanity, abawaca, maxbin2, CONCOCT and metabat2 
-- MAG dereplication: drep
+- MAG dereplication: dRep
 - MAG read-mapping: CoverM
-- MAG Taxonomy analysis: GTDBTK
+- MAG Taxonomy analysis: GTDB-Tk
 - MAG annotation: DRAM
-- Long-reads processing: guppy_basecaller, assembly (hybrid)
+- Long-reads processing: guppy_basecaller, assembly with MetaSpades (hybrid)
 
 ## Metagenome processing
 **_Quality control_**
