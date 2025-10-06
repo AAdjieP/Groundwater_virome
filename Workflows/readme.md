@@ -14,7 +14,7 @@ This directory contains workflows for (_i_) metagenomics processing and Metageno
 - Virus identification: DeepVirFinder, VIBRANT, geNomad, and VirSorter2
 - Virus clustering (to get vOTU): MMseq2
 - Virus genome quality assessment: CheckV
-- Virus read-mapping: CheckM
+- Virus read-mapping: CoverM
 - Virus taxonomy: vConTACT3
 - Virus annotation and AMG identification: DRAM-v
 - Virus microdiversity assessment: MetaPop
