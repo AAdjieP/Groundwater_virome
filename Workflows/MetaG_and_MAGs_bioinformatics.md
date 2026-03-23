@@ -22,6 +22,12 @@ bbduk.sh -Xmx1g \
         ref=/PATH/adapters.fa \
         threads=INTEGER \
         ktrim=r \
+        qtrim=rl \
+        trimq=20 \
+        minlen=50 \
+        k=23 \
+	mink=11 \
+        hdist=1 \
 ```
 **_Quality control reporting_**
 ```
