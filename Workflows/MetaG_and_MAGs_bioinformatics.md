@@ -26,7 +26,7 @@ bbduk.sh -Xmx1g \
         trimq=20 \
         minlen=50 \
         k=23 \
-	mink=11 \
+		mink=11 \
         hdist=1 \
 ```
 **_Quality control reporting_**
