@@ -1,4 +1,4 @@
-# Hidden viral players: Diversity and ecological roles of viruses in groundwater microbiomes
+# Diversity and ecological roles of hidden viral players in groundwater microbiomes
 This repository contains workflows and codes for groundwater virome project
 
 # **Summary**
